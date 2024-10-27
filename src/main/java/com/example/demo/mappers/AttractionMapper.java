@@ -11,8 +11,11 @@ public interface AttractionMapper {
     AttractionMapper INSTANCE = Mappers.getMapper(AttractionMapper.class);
 
     @Mapping(target = "services", ignore = true)
+    @Mapping(target = "city", ignore = true)
     AttractionDTO toDTO(Attraction attraction);
 
+    @Mapping(target = "services", ignore = true)
     @Mapping(target = "city", ignore = true)
     Attraction toEntity(AttractionDTO attractionDTO);
 }
+

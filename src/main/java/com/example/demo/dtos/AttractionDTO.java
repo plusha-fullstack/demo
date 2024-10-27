@@ -1,5 +1,6 @@
 package com.example.demo.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import java.time.LocalDate;
 import java.util.List;
@@ -11,15 +12,9 @@ public class AttractionDTO {
     private LocalDate createdDate;
     private String description;
     private String type;
+    @JsonIgnore
     private CityDTO city;
+    @JsonIgnore
     private List<ServiceDTO> services;
 
-//    // Геттеры и сеттеры
-//    public Long getCityId() {
-//        return cityId;
-//    }
-//
-//    public void setCityId(Long cityId) {
-//        this.cityId = cityId;
-//    }
 }

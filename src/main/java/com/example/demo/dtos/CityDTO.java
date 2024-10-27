@@ -1,5 +1,6 @@
 package com.example.demo.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import java.util.List;
 
@@ -9,5 +10,6 @@ public class CityDTO {
     private String name;
     private int population;
     private boolean hasMetro;
+    @JsonIgnore
     private List<AttractionDTO> attractions;
 }

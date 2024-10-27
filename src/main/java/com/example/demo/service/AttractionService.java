@@ -31,12 +31,7 @@ public class AttractionService {
         this.attractionMapper = attractionMapper;
     }
 
-//    public AttractionDTO addAttraction(AttractionDTO attractionDTO) {
-//        Attraction attraction = attractionMapper.toEntity(attractionDTO);
-//        Attraction savedAttraction = attractionRepository.save(attraction);
-//        log.info("Attraction added: {}", savedAttraction.getName());
-//        return attractionMapper.toDTO(savedAttraction);
-//    }
+
 public AttractionDTO addAttraction(AttractionDTO attractionDTO) {
     Attraction attraction = attractionMapper.toEntity(attractionDTO);
 
@@ -51,44 +46,6 @@ public AttractionDTO addAttraction(AttractionDTO attractionDTO) {
     log.info("Attraction added: {}", savedAttraction.getName());
     return attractionMapper.toDTO(savedAttraction);
 }
-
-//    public AttractionDTO addAttraction(AttractionDTO attractionDTO) {  this is last variant!!
-//        // Извлекаем идентификатор города из DTO
-//        Long cityId = attractionDTO.getCity().getId();
-//
-//        // Находим город по идентификатору
-//        City city = cityRepository.findById(cityId)
-//                .orElseThrow(() -> new RuntimeException("City not found with id: " + cityId));
-//
-//        // Преобразуем DTO в сущность Attraction
-//        Attraction attraction = attractionMapper.toEntity(attractionDTO);
-//
-//        // Устанавливаем найденный город в сущность Attraction
-//        attraction.setCity(city);
-//
-//        // Сохраняем Attraction
-//        Attraction savedAttraction = attractionRepository.save(attraction);
-//
-//        log.info("Attraction added: {}", savedAttraction.getName());
-//
-//        // Преобразуем сохраненную сущность обратно в DTO
-//        return attractionMapper.toDTO(savedAttraction);
-//    }
-
-//    public AttractionDTO addAttraction(AttractionDTO attractionDTO) {
-//        // Найдем город по cityId
-//        City city = cityRepository.findById(attractionDTO.getCityId())
-//                .orElseThrow(() -> new RuntimeException("City not found with id: " + attractionDTO.getCityId()));
-//        // Преобразуем DTO в сущность
-//        Attraction attraction = attractionMapper.toEntity(attractionDTO);
-//        // Установим город в объекте Attraction
-//        attraction.setCity(city);
-//        // Сохраним объект Attraction
-//        Attraction savedAttraction = attractionRepository.save(attraction);
-//        log.info("Attraction added: {}", savedAttraction.getName());
-//        // Преобразуем обратно в DTO и вернем результат
-//        return attractionMapper.toDTO(savedAttraction);
-//    }
 
 
     public AttractionDTO updateAttractionDescription(Long id, String newDescription) {

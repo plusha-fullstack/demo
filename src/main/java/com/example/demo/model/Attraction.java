@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 @Table(name = "attractions")
 public class Attraction {
 
@@ -29,9 +31,11 @@ public class Attraction {
     private AttractionType type;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "city_id ", nullable = false)
     private City city;
 
     @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@JsonManagedReference
     private List<Service> services;
 }

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-18T15:35:21+0300",
+    date = "2024-10-27T15:30:40+0300",
     comments = "version: 1.5.0.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
@@ -36,7 +36,6 @@ public class AttractionMapperImpl implements AttractionMapper {
             attractionDTO.setType( attraction.getType().name() );
         }
         attractionDTO.setCity( cityToCityDTO( attraction.getCity() ) );
-        attractionDTO.setServices( serviceListToServiceDTOList( attraction.getServices() ) );
 
         return attractionDTO;
     }
@@ -56,7 +55,6 @@ public class AttractionMapperImpl implements AttractionMapper {
         if ( attractionDTO.getType() != null ) {
             attraction.setType( Enum.valueOf( AttractionType.class, attractionDTO.getType() ) );
         }
-        attraction.setCity( cityDTOToCity( attractionDTO.getCity() ) );
         attraction.setServices( serviceDTOListToServiceList( attractionDTO.getServices() ) );
 
         return attraction;
@@ -89,63 +87,6 @@ public class AttractionMapperImpl implements AttractionMapper {
         cityDTO.setAttractions( attractionListToAttractionDTOList( city.getAttractions() ) );
 
         return cityDTO;
-    }
-
-    protected ServiceDTO serviceToServiceDTO(Service service) {
-        if ( service == null ) {
-            return null;
-        }
-
-        ServiceDTO serviceDTO = new ServiceDTO();
-
-        serviceDTO.setId( service.getId() );
-        serviceDTO.setName( service.getName() );
-        serviceDTO.setDescription( service.getDescription() );
-        serviceDTO.setAttraction( toDTO( service.getAttraction() ) );
-
-        return serviceDTO;
-    }
-
-    protected List<ServiceDTO> serviceListToServiceDTOList(List<Service> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<ServiceDTO> list1 = new ArrayList<ServiceDTO>( list.size() );
-        for ( Service service : list ) {
-            list1.add( serviceToServiceDTO( service ) );
-        }
-
-        return list1;
-    }
-
-    protected List<Attraction> attractionDTOListToAttractionList(List<AttractionDTO> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<Attraction> list1 = new ArrayList<Attraction>( list.size() );
-        for ( AttractionDTO attractionDTO : list ) {
-            list1.add( toEntity( attractionDTO ) );
-        }
-
-        return list1;
-    }
-
-    protected City cityDTOToCity(CityDTO cityDTO) {
-        if ( cityDTO == null ) {
-            return null;
-        }
-
-        City city = new City();
-
-        city.setId( cityDTO.getId() );
-        city.setName( cityDTO.getName() );
-        city.setPopulation( cityDTO.getPopulation() );
-        city.setHasMetro( cityDTO.isHasMetro() );
-        city.setAttractions( attractionDTOListToAttractionList( cityDTO.getAttractions() ) );
-
-        return city;
     }
 
     protected Service serviceDTOToService(ServiceDTO serviceDTO) {

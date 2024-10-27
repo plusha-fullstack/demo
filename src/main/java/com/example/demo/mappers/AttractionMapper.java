@@ -6,12 +6,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {ServiceMapper.class, CityMapper.class})
 public interface AttractionMapper {
     AttractionMapper INSTANCE = Mappers.getMapper(AttractionMapper.class);
 
-    @Mapping(target = "services", ignore = true)
-    @Mapping(target = "city", ignore = true)
+    @Mapping(source = "city", target = "city")
+    @Mapping(source = "services", target = "services")
     AttractionDTO toDTO(Attraction attraction);
 
     @Mapping(target = "services", ignore = true)

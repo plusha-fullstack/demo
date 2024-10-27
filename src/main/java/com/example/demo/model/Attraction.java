@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -30,12 +31,19 @@ public class Attraction {
     @Column(nullable = false)
     private AttractionType type;
 
-    @ManyToOne
-    @JsonBackReference
+    //@JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
-    @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL, orphanRemoval = true)
-    //@JsonManagedReference
-    private List<Service> services;
+    @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    private List<Service> services = new ArrayList<>();
+
+    public void addService(Service service) {
+        if (services == null) {
+            services = new ArrayList<>();
+        }
+        services.add(service);
+        service.setAttraction(this);
+    }
 }

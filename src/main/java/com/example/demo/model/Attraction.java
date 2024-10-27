@@ -32,7 +32,7 @@ public class Attraction {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "city_id ", nullable = false)
+    @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
     @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL, orphanRemoval = true)

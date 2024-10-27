@@ -12,9 +12,7 @@ public class AttractionDTO {
     private LocalDate createdDate;
     private String description;
     private String type;
-    @JsonIgnore
     private CityDTO city;
-    @JsonIgnore
     private List<ServiceDTO> services;
 
 }

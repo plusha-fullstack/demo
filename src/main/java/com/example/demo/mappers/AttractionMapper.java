@@ -18,4 +18,3 @@ public interface AttractionMapper {
     @Mapping(target = "city", ignore = true)
     Attraction toEntity(AttractionDTO attractionDTO);
 }
-

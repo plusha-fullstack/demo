@@ -3,9 +3,7 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -37,13 +35,7 @@ public class Attraction {
     private City city;
 
     @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-    private List<Service> services = new ArrayList<>();
-
-    public void addService(Service service) {
-        if (services == null) {
-            services = new ArrayList<>();
-        }
-        services.add(service);
-        service.setAttraction(this);
-    }
+    private List<Service> services;
 }
+
+

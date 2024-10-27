@@ -1,6 +1,5 @@
 package com.example.demo.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import java.time.LocalDate;
 import java.util.List;

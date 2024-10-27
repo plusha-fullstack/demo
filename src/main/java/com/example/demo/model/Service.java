@@ -23,7 +23,6 @@ public class Service {
     @Column(nullable = false)
     private String description;
 
-    // Make sure these methods are present
     @Getter
     @Setter
     @ManyToOne
